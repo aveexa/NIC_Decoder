@@ -60,8 +60,8 @@ flutter run
 
 ## Author
 - **Aveesha Umali**
-- [github.com/aveexa](https://github.com/aveexa)
+<br> [github.com/aveexa](https://github.com/aveexa)
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/aveexa/NIC_Decoder/blob/main/LICENSE).
 
