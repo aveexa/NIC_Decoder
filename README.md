@@ -24,13 +24,13 @@ This Flutter application decodes Sri Lankan National Identity Card (NIC) numbers
 ## Folder Structure
 ```plaintext
 lib/
-├── main.dart                # Entry point
+├── main.dart            # Entry point
 ├── home_screen.dart     # NIC Input Screen
 ├── result_screen.dart   # Result Screen
 ├── nic_controller.dart  # NIC Decode Logic with GetX
-└── assets/
-    ├── bg.png              # Background Image
-    └── logo.png            # Logo Image
+assets/
+├── bg.png              # Background Image
+└── logo.png            # Logo Image
 ```
 
 ## How to Run the Project
