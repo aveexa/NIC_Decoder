@@ -1,16 +1,66 @@
-# nic_decoder
+# NIC Decoder App
 
-A new Flutter project.
+### Description
+This Flutter application decodes Sri Lankan National Identity Card (NIC) numbers to extract information such as birth date, age, gender, weekday name, NIC type, and voting eligibility. The app is built using **Material UI** and **GetX** for state management.
 
-## Getting Started
+## Features
+- Detects old and new NIC number formats.
+- Displays birth date, age, gender, and weekday name.
+- Identifies voting eligibility.
+- User-friendly interface with Material UI.
 
-This project is a starting point for a Flutter application.
+## Screenshots
+| Home Screen       | Result Screen       |
+|----------------|----------------|
+| ![Home Screen](assets/home.png) | ![Result Screen](assets/result.png) |
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
+- **Flutter**
+- **Dart**
+- **GetX** (State Management)
+- **Material UI**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Folder Structure
+```plaintext
+lib/
+├── main.dart                # Entry point
+├── home_screen.dart     # NIC Input Screen
+├── result_screen.dart   # Result Screen
+├── nic_controller.dart  # NIC Decode Logic with GetX
+└── assets/
+    ├── bg.png              # Background Image
+    └── logo.png            # Logo Image
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to Run the Project
+1. Clone the repository:
+```bash
+https://github.com/aveexa/NIC_Decoder.git
+```
+2. Navigate to the project directory:
+```bash
+cd NIC_Decoder
+```
+3. Install dependencies:
+```bash
+flutter pub get
+```
+4. Run the app:
+```bash
+flutter run
+```
+
+## NIC Decoding Logic
+- Old NIC: `9 digits + 1 letter`
+- New NIC: `12 digits`
+- Gender identified based on day of the year (> 500 → Female, < 500 → Male)
+- Birthdate calculated from the day of the year.
+- Voting eligibility based on the last character in old NIC.
+
+## Author
+- **Your Name**
+- [GitHub Profile](https://github.com/aveexa)
+
+## License
+This project is licensed under the MIT License.
+
