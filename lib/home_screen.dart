@@ -7,6 +7,8 @@ class HomeScreen extends StatelessWidget {
   final TextEditingController nicController = TextEditingController();
   final NicController getxController = Get.put(NicController());
 
+  HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

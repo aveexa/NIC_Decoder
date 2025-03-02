@@ -5,6 +5,8 @@ import 'nic_controller.dart';
 class ResultScreen extends StatelessWidget {
   final NicController nicController = Get.find();
 
+  const ResultScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

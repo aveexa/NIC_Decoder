@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the decodeNIC method from the NicController class, for the Dart programming language.">
+  <title>decodeNIC method - NicController class - nic_controller library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">nic_decoder</a></li>
+    <li><a href="../../nic_controller/nic_controller-library.html">nic_controller.dart</a></li>
+    <li><a href="../../nic_controller/NicController-class.html">NicController</a></li>
+    <li class="self-crumb">decodeNIC method</li>
+  </ol>
+  <div class="self-name">decodeNIC</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="nic_controller&#47;NicController-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">decodeNIC</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<span class="returntype">void</span>
+<span class="name ">decodeNIC</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="decodeNIC-param-nic"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">nic</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">void decodeNIC(String nic) {
+  nicNumber.value = nic;
+  int year, dayOfYear, serialNumber;
+  bool isOldNic = nic.length == 10;
+
+  if (isOldNic) {
+    &#47;&#47; Old NIC (9 digits + 1 letter)
+    nicType.value = &quot;Old NIC&quot;;
+    year = int.parse(nic.substring(0, 2)) + 1900;
+    dayOfYear = int.parse(nic.substring(2, 5));
+    serialNumber = int.parse(nic.substring(5, 9));
+    votingEligibility.value =
+        nic[9].toUpperCase() == &#39;V&#39; ? &quot;Can Vote&quot; : &quot;Cannot Vote&quot;;
+  } else if (nic.length == 12) {
+    &#47;&#47; New NIC (12 digits)
+    nicType.value = &quot;New NIC&quot;;
+    year = int.parse(nic.substring(0, 4));
+    dayOfYear = int.parse(nic.substring(4, 7));
+    serialNumber = int.parse(nic.substring(7, 12));
+    votingEligibility.value = &quot;N&#47;A&quot;;
+  } else {
+    nicType.value = &quot;Invalid NIC&quot;;
+    return;
+  }
+
+  &#47;&#47; Determine gender
+  if (dayOfYear &gt; 500) {
+    gender.value = &quot;Female&quot;;
+    dayOfYear -= 500;
+  } else {
+    gender.value = &quot;Male&quot;;
+  }
+
+  &#47;&#47; Convert day of year to date
+  DateTime dob = getDateFromDayOfYear(year, dayOfYear);
+  birthDate.value = DateFormat(&#39;yyyy-MM-dd&#39;).format(dob);
+
+  &#47;&#47; Calculate age
+  DateTime now = DateTime.now();
+  age.value = now.year - dob.year;
+  if (now.month &lt; dob.month ||
+      (now.month == dob.month &amp;&amp; now.day &lt; dob.day)) {
+    age.value--;
+  }
+
+  &#47;&#47; Get weekday name
+  weekday.value = DateFormat(&#39;EEEE&#39;).format(dob);
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">nic_decoder</a></li>
+    <li><a href="../../nic_controller/nic_controller-library.html">nic_controller</a></li>
+    <li><a href="../../nic_controller/NicController-class.html">NicController</a></li>
+    <li class="self-crumb">decodeNIC method</li>
+</ol>
+
+    <h5>NicController class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    nic_decoder
+      1.0.0+1
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
